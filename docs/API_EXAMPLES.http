@@ -1,0 +1,61 @@
+### Login admin
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@nexastock.dev",
+  "password": "Admin123!"
+}
+
+### Dashboard
+GET http://localhost:8080/api/dashboard
+Authorization: Bearer {{token}}
+
+### Crear producto
+POST http://localhost:8080/api/products
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "sku": "LAP-DEV-001",
+  "name": "Laptop Developer Pro 14",
+  "category": "Hardware",
+  "price": 1299.99,
+  "stock": 15,
+  "minStock": 5
+}
+
+### Listar productos
+GET http://localhost:8080/api/products?term=laptop&page=0&size=10
+Authorization: Bearer {{token}}
+
+### Crear cliente
+POST http://localhost:8080/api/customers
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Acme Digital SL",
+  "email": "compras@acmedigital.test",
+  "phone": "+34 600 100 200",
+  "company": "Acme Digital SL"
+}
+
+### Crear pedido
+POST http://localhost:8080/api/orders
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "customerId": 1,
+  "items": [
+    {
+      "productId": 1,
+      "quantity": 2
+    },
+    {
+      "productId": 2,
+      "quantity": 1
+    }
+  ]
+}
