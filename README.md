@@ -76,6 +76,8 @@ El objetivo del proyecto no es solo “hacer pantallas”, sino demostrar capaci
 - Gestión centralizada de errores.
 - Documentación OpenAPI.
 - Datos iniciales para demo.
+- Referencias de pedido con prefijo NS, año y UUID completo,
+  protegidas por una restricción de unicidad en la base de datos.
 
 ---
 
@@ -198,6 +200,7 @@ dirigidas a esa rama. También permite ejecución manual.
 
 No realiza despliegues ni pruebas funcionales del frontend.
 
+
 ## Alcance y limitaciones
 
 Proyecto personal de aprendizaje y demostración, sin uso
@@ -207,8 +210,6 @@ productivo acreditado.
   comportamientos específicos de PostgreSQL.
 - Quedan pendientes pruebas de extremo a extremo entre
   frontend y backend.
-- La generación de números de pedido necesita mejorarse
-  para evitar colisiones entre peticiones simultáneas.
 - Los usuarios de demostración son para entornos locales.
 
 ---
