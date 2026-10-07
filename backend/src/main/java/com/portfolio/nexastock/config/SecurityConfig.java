@@ -31,22 +31,22 @@ import java.util.List;
 @EnableMethodSecurity
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserRepository userRepository;
     private final String allowedOrigins;
 
     public SecurityConfig(
-            JwtAuthenticationFilter jwtAuthenticationFilter,
-            UserRepository userRepository,
-            @Value("${app.cors.allowed-origins:}") String allowedOrigins
+        UserRepository userRepository,
+        @Value("${app.cors.allowed-origins:}") String allowedOrigins
     ) {
-        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.userRepository = userRepository;
-        this.allowedOrigins = allowedOrigins;
+    this.userRepository = userRepository;
+    this.allowedOrigins = allowedOrigins;
     }
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain securityFilterChain(
+        HttpSecurity http,
+        JwtAuthenticationFilter jwtAuthenticationFilter
+    ) throws Exception {
         return http
                 .csrf(csrf -> csrf.disable())
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
