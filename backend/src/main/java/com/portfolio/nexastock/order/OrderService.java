@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.Year;
+import java.util.UUID;
 
 @Service
 public class OrderService {
@@ -85,7 +86,6 @@ public class OrderService {
     }
 
     private String generateOrderNumber() {
-        long next = salesOrderRepository.count() + 1;
-        return "NS-" + Year.now().getValue() + "-" + String.format("%06d", next);
+        return "NS-" + Year.now().getValue() + "-" + UUID.randomUUID();
     }
 }
