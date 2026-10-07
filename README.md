@@ -1,10 +1,15 @@
 # NexaStock Fullstack
 
-**NexaStock Fullstack** es una aplicación SaaS de gestión de inventario, clientes y pedidos pensada para demostrar perfil de **Full Stack Developer**, **Software Engineer** y **Backend Developer**.
+NexaStock es una aplicación personal de gestión de inventario,
+clientes y pedidos. Combina un backend Java 21 con Spring Boot
+y un frontend React con TypeScript.
 
-El proyecto está preparado para portfolio y entrevistas: incluye backend con Spring Boot, frontend con React + TypeScript, autenticación JWT, roles, API REST documentada, Docker, datos de prueba, tests y documentación técnica.
+Permite consultar productos, gestionar clientes y crear pedidos
+con descuento de stock. Incluye autenticación JWT, datos de
+demostración y pruebas automatizadas del backend.
 
 ![Vista previa de NexaStock](docs/preview.svg)
+Ilustración del panel en SVG; no es una captura de la aplicación ejecutándose.
 
 ---
 
@@ -26,7 +31,7 @@ El objetivo del proyecto no es solo “hacer pantallas”, sino demostrar capaci
 - JWT
 - Spring Data JPA
 - PostgreSQL
-- H2 para tests/local rápido
+- H2 para pruebas automatizadas
 - Bean Validation
 - OpenAPI / Swagger UI
 - JUnit 5 + Mockito
@@ -177,22 +182,34 @@ nexastock-fullstack/
 | POST | `/api/orders` | Crear pedido y descontar stock |
 | GET | `/api/orders/{id}` | Detalle de pedido |
 
+
 ---
 
-## Qué demuestra este proyecto en una entrevista
+## Integración continua
 
-Este proyecto permite defender experiencia en:
+El workflow `.github/workflows/ci.yml` realiza dos comprobaciones:
 
-- Diseño de API REST profesional.
-- Arquitectura por capas.
-- Seguridad con JWT y Spring Security.
-- Modelado de dominio con entidades relacionadas.
-- Validación de datos y control de errores.
-- Transacciones con reglas de negocio reales.
-- React con TypeScript y consumo de API.
-- Dockerización de una aplicación full stack.
-- Documentación técnica orientada a equipo.
-- Buenas prácticas para subir a GitHub.
+- Backend: compilación, ejecución de pruebas y generación del JAR
+  con Java 21 y Maven.
+- Frontend: comprobación de TypeScript y compilación con Vite.
+
+Se ejecuta al enviar cambios a main y en las pull requests
+dirigidas a esa rama. También permite ejecución manual.
+
+No realiza despliegues ni pruebas funcionales del frontend.
+
+## Alcance y limitaciones
+
+Proyecto personal de aprendizaje y demostración, sin uso
+productivo acreditado.
+
+- Las pruebas del backend utilizan H2; no validan todos los
+  comportamientos específicos de PostgreSQL.
+- Quedan pendientes pruebas de extremo a extremo entre
+  frontend y backend.
+- La generación de números de pedido necesita mejorarse
+  para evitar colisiones entre peticiones simultáneas.
+- Los usuarios de demostración son para entornos locales.
 
 ---
 
@@ -208,6 +225,4 @@ Este proyecto permite defender experiencia en:
 
 ---
 
-## Texto corto para LinkedIn o portfolio
 
-> NexaStock Fullstack es una plataforma web de gestión de inventario, clientes y pedidos desarrollada con Java 21, Spring Boot 3, Spring Security, JWT, PostgreSQL, React y TypeScript. El proyecto incluye arquitectura por capas, API REST documentada con OpenAPI, Docker Compose, validaciones, roles, tests y documentación técnica, demostrando competencias reales de Full Stack Developer, Backend Developer y Software Engineer.
