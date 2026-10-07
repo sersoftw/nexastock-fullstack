@@ -16,6 +16,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.mockito.ArgumentMatchers.any;
 
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
@@ -42,5 +44,30 @@ class OrderServiceTest {
         when(productService.findProduct(10L)).thenReturn(product);
 
         assertThrows(IllegalArgumentException.class, () -> orderService.create(request));
+    }
+
+    @Test
+void createShouldGenerateDifferentReferencesWithoutPersistedCountChanging() {
+    Customer customer = new Customer(
+            "Cliente", "cliente@test.dev", null, null
+    );
+    Product product = new Product(
+            "SKU-REF", "Producto", "Demo",
+            new BigDecimal("10.00"), 10, 1
+    );
+    OrderRequest request = new OrderRequest(
+            1L, List.of(new OrderLineRequest(10L, 1))
+    );
+
+    when(customerService.findCustomer(1L)).thenReturn(customer);
+    when(productService.findProduct(10L)).thenReturn(product);
+    when(salesOrderRepository.save(any(SalesOrder.class)))
+            .thenAnswer(invocation ->
+                    invocation.getArgument(0, SalesOrder.class));
+
+    OrderResponse first = orderService.create(request);
+    OrderResponse second = orderService.create(request);
+
+    assertNotEquals(first.orderNumber(), second.orderNumber());
     }
 }
