@@ -59,7 +59,7 @@ jobs:
           package-manager-cache: false
 
       - name: Instalar dependencias
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Comprobar TypeScript y generar web
         run: npm run build
